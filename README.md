@@ -1,84 +1,99 @@
-# Tech Stack Recommender - Day 2
+# Tech Stack Recommender
 
-## Overview
-
-This project is a content-based recommendation engine that maps technical skills to relevant technology career paths.
-
-The system now supports TF-IDF vectorization for transforming job-role skills into weighted numerical representations.
+A content-based recommendation engine that suggests technology career paths based on a user's technical skills using TF-IDF vectorization and cosine similarity.
 
 ---
 
-## Progress Completed
+## Features
 
-### Day 1
-
-* CSV dataset loading
-* Skill extraction
-* Vocabulary generation
-
-### Day 2
-
-* TF-IDF implementation
-* Inverse Document Frequency computation
-* Vector representation of job roles
+* Content-based filtering
+* TF-IDF feature weighting
+* Cosine similarity scoring
+* Top-3 ranked recommendations
+* Cold-start handling
+* No external libraries required
 
 ---
 
-## How TF-IDF Works
+## Technologies Used
 
-### TF (Term Frequency)
+* Python
+* CSV
+* Math module
 
-Measures how often a skill appears in a role.
+---
+
+## How It Works
+
+### Step 1 — Load Dataset
+
+Job roles and skills are loaded from a CSV dataset.
+
+### Step 2 — Build Vocabulary
+
+A shared vocabulary of unique skills is created.
+
+### Step 3 — TF-IDF Vectorization
+
+Each role and user profile is converted into weighted numerical vectors.
 
 ```text
-TF = occurrences of skill / total skills in role
-```
+TF = occurrences of skill / total skills
 
-### IDF (Inverse Document Frequency)
-
-Measures how unique a skill is across all job roles.
-
-```text
 IDF = log(total roles / roles containing skill)
-```
 
-### TF-IDF Weight
-
-```text
 TF-IDF = TF × IDF
 ```
 
-Skills that appear in many roles become less important, while specialized skills become stronger signals.
+### Step 4 — Cosine Similarity
+
+The similarity between the user vector and each role vector is calculated.
+
+```text
+cosine = (A · B) / (||A|| × ||B||)
+```
+
+### Step 5 — Recommendation Ranking
+
+Scores are sorted in descending order and the Top 3 roles are displayed.
 
 ---
 
-## Current Pipeline
+## Example
+
+Input:
 
 ```text
-CSV Dataset
-    ↓
-Skill Extraction
-    ↓
-Vocabulary Construction
-    ↓
-TF-IDF Vectorization
+python
+machine learning
+statistics
+```
+
+Output:
+
+```text
+1. Data Scientist -> 75.6% match
+2. ML Engineer -> 55.5% match
+3. Data Analyst -> 13.9% match
 ```
 
 ---
 
-## Current Status
+## File Structure
 
-✅ Dataset loading
-
-✅ Vocabulary generation
-
-✅ TF-IDF vectors
-
-⬜ Cosine similarity
-
-⬜ Recommendation ranking
-
-⬜ Top-3 career suggestions
+```text
+tech-stack-recommender/
+├── recommender.py
+├── raw_skills.csv
+└── README.md
+```
 
 ---
 
+## Future Improvements
+
+* GUI version
+* Web deployment
+* Larger datasets
+* Skill proficiency weighting
+* NLP preprocessing
